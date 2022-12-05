@@ -73,8 +73,6 @@ exports.fetchReviews = (sortedBy = "created_at", orderedBy = "desc", category) =
             return rows;
         })
     }
-
-   
 }
 
 exports.fetchCommentbyReviewID = (review_id) => {
