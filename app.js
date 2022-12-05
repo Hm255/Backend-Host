@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 
 const { getCategories, getReviewID, getUsers, newRev, getReviews, getCommentByReviewId, newCommentByReviewID} = require("./controller/controller");
 
 
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.get("/api/categories", getCategories);  //endpoint invoked with required in getCategories originally from the controller
