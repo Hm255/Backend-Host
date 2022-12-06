@@ -69,7 +69,6 @@ exports.fetchReviews = (sortedBy = "created_at", orderedBy = "desc", category) =
         GROUP BY reviews.review_id
         ORDER BY ${sortedBy} ${orderedBy}`)// << will be sorted BY sortedBy(given review property) and orderedBy asc/desc
         .then(({rows}) => {
-            console.log(rows)
             return rows;
         })
     }

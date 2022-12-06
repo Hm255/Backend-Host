@@ -72,7 +72,7 @@ afterAll(() => {
     });
     test("200: return reviews array filtered by category", () => {
       return request(app)
-        .get('/api/reviews?category=dexterity')//? stands for query which stands for a keys value
+        .get('/api/reviews?category=dexterity')//? - stands for query which stands for a keys value
         .expect(200)
         .then(({ body: {reviews} }) => {
           expect(reviews).toHaveLength(1);
@@ -143,6 +143,7 @@ describe('DELETE /api/reviews/:review_id/comments/:comment_id', () => {
   const comment_id = 1
   },
   test('204: deletes comment', () => {
+    console.log(review_id, comment_id)
   return request(app)
   .delete(`/api/reviews/${review_id}/comments/${comment_id}`)
   .expect(204)
