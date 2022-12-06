@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const { getCategories, getReviewID, getUsers, newRev, getReviews, getCommentByReviewId, newCommentByReviewID} = require("./controller/controller");
+const { getCategories, getReviewID, getUsers, newRev, getReviews, getCommentByReviewId, newCommentByReviewID, DeleteComment} = require("./controller/controller");
 
 
 
@@ -26,6 +26,7 @@ app.patch("/api/reviews/:review_id", newRev);
 app.get("/api/reviews/:review_id/comments", getCommentByReviewId)
 app.post("/api/reviews/:review_id/comments", newCommentByReviewID)
 
+app.delete("/api/reviews/:review_id/comments", DeleteComment)
 
 app.get("/api/users", getUsers);
 

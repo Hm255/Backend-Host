@@ -78,4 +78,11 @@ exports.getCommentByReviewId = (req, res, next) => {
   })
   .catch(next);
 } 
+exports.DeleteComment = (req, res, next) => {
+  const {comment_id} = req.params
+  return removeComment(comment_id)
+  .then((comment) => {
+    res.status(204).delete({comment})
+  })
+}
 

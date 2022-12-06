@@ -137,6 +137,22 @@ describe('POST /api/reviews/:review_id/comments', () => {
   });
 })
 
+
+describe('DELETE /api/reviews/:review_id/comments/:comment_id', () => {
+  const review_id = 2
+  const comment_id = 1
+  },
+  test('204: deletes comment', () => {
+  return request(app)
+  .delete(`/api/reviews/${review_id}/comments/${comment_id}`)
+  .expect(204)
+  .then(({body})=>{
+    console.log(body);
+    expect(body).toBe('')
+  });
+    })
+  )
+
   describe("GET/api/reviews/:review_id", () => {
     test("200: returns a result", () => {
       return request(app)

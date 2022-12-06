@@ -90,3 +90,6 @@ exports.postCommentByReviewID = (comment, review_id) => {
     })
 }
 
+exports.removeComment = (comment_id, review_id) => {
+    return db.query(`DELETE from comments WHERE comment_id=$1 AND comments.review_id=$2`)
+}
