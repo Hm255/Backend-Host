@@ -78,15 +78,15 @@ exports.getCommentByReviewId = (req, res, next) => {
   })
   .catch(next);
 } 
-exports.DeleteComment = (req, res, next) => {
-  console.log(req)
-  const {comment_id} = req.params
-  removeComment(comment_id)
-  .then((comment) => {
-    res.status(204).delete({comment})
-  })
-  .catch(next);
-}
+// exports.DeleteComment = (req, res, next) => {
+//   console.log(req)
+//   const {comment_id} = req.params
+//   removeComment(comment_id)
+//   .then((comment) => {
+//     res.status(204).delete({comment})
+//   })
+//   .catch(next);
+// }
 exports.getComments = (req, res) => {
   fetchAllComments()
   .then((comments) => {
