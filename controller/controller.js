@@ -2,7 +2,7 @@
 const express = require('express');
 const { sort } = require('../db/data/test-data/categories');
 
-const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID} = require('../model/model')
+const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment} = require('../model/model')
 //handling sql queries and directing them to an output in the controller
 
 const app = express();
@@ -61,7 +61,6 @@ exports.newRev = (req, res, next) => {
 
 exports.getReviews = (req, res, next) => {
   const {sortedBy, orderedBy, category} = req.query
-  console.log(category);
   return fetchReviews(sortedBy, orderedBy, category)
   .then((reviews) => {
     return res.status(200).send({reviews});
@@ -79,10 +78,13 @@ exports.getCommentByReviewId = (req, res, next) => {
   .catch(next);
 } 
 exports.DeleteComment = (req, res, next) => {
+  console.log(req, 'controller')
   const {comment_id} = req.params
   return removeComment(comment_id)
   .then((comment) => {
+    console.log(comment, 'before')
     res.status(204).delete({comment})
   })
+  .catch(next);
 }
 

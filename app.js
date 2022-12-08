@@ -26,7 +26,10 @@ app.patch("/api/reviews/:review_id", newRev);
 app.get("/api/reviews/:review_id/comments", getCommentByReviewId)
 app.post("/api/reviews/:review_id/comments", newCommentByReviewID)
 
-app.delete("/api/reviews/:review_id/comments", DeleteComment)
+
+app.get("/api/comments", getComments);
+
+app.delete("/api/comments/:comment_id", DeleteComment) //gets a comment_id and deletes the comment relating to it
 
 app.get("/api/users", getUsers);
 

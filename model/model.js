@@ -55,10 +55,9 @@ exports.fetchReviews = (sortedBy = "created_at", orderedBy = "desc", category) =
         queryStr += ` WHERE reviews.category = $1 
         GROUP BY reviews.review_id 
         ORDER BY ${sortedBy} ${orderedBy}`;
-        console.log(queryStr)
+        
         return db.query(queryStr, [category])
         .then(({rows}) => {
-            console.log(rows)
             return rows;
         }).catch((err) => {
             console.log(err)
@@ -72,6 +71,13 @@ exports.fetchReviews = (sortedBy = "created_at", orderedBy = "desc", category) =
             return rows;
         })
     }
+}
+
+exports.fetchAllComments = () => {
+    return db.query(`SELECT * FROM comments`)
+    .then(({rows}) => {
+        return rows;
+    })
 }
 
 exports.fetchCommentbyReviewID = (review_id) => {
@@ -89,6 +95,6 @@ exports.postCommentByReviewID = (comment, review_id) => {
     })
 }
 
-exports.removeComment = (comment_id, review_id) => {
-    return db.query(`DELETE from comments WHERE comment_id=$1 AND comments.review_id=$2`)
+exports.removeComment = (comment_id) => {
+    return db.query(`DELETE * FROM comments WHERE comment.comment_id=$1`)
 }
