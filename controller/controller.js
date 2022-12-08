@@ -88,10 +88,14 @@ exports.DeleteComment = (req, res, next) => {
   })
   .catch(next);
 }
-exports.getComments = (req, res, next) => {
-  return fetchAllComments()
+exports.getComments = (req, res) => {
+  fetchAllComments()
   .then((comments) => {
-    return res.status(200).send({comments});
+    res.status(200).send({comments});
   })
-  .catch(next);
 }
+// exports.getUsers = (req, res) => {      
+//   fetchUsers().then((users) => {
+//     res.status(200).send({users});
+//   });
+// };
