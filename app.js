@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const { getCategories, getReviewID, getUsers, newRev, getReviews, getCommentByReviewId, newCommentByReviewID, DeleteComment} = require("./controller/controller");
+const { getCategories, getReviewID, getUsers, newRev, getReviews, getCommentByReviewId, newCommentByReviewID, DeleteComment, getComments} = require("./controller/controller");
 
 
 

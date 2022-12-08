@@ -1,8 +1,9 @@
 
 const express = require('express');
+const { restart } = require('nodemon');
 const { sort } = require('../db/data/test-data/categories');
 
-const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment} = require('../model/model')
+const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments} = require('../model/model')
 //handling sql queries and directing them to an output in the controller
 
 const app = express();
@@ -87,4 +88,10 @@ exports.DeleteComment = (req, res, next) => {
   })
   .catch(next);
 }
-
+exports.getComments = (req, res, next) => {
+  return fetchAllComments()
+  .then((comments) => {
+    return res.status(200).send({comments});
+  })
+  .catch(next);
+}
