@@ -79,11 +79,10 @@ exports.getCommentByReviewId = (req, res, next) => {
   .catch(next);
 } 
 exports.DeleteComment = (req, res, next) => {
-  console.log(req, 'controller')
+  console.log(req)
   const {comment_id} = req.params
-  return removeComment(comment_id)
+  removeComment(comment_id)
   .then((comment) => {
-    console.log(comment, 'before')
     res.status(204).delete({comment})
   })
   .catch(next);
@@ -94,8 +93,3 @@ exports.getComments = (req, res) => {
     res.status(200).send({comments});
   })
 }
-// exports.getUsers = (req, res) => {      
-//   fetchUsers().then((users) => {
-//     res.status(200).send({users});
-//   });
-// };
