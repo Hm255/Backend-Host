@@ -3,7 +3,7 @@ const express = require('express');
 const { restart } = require('nodemon');
 const { sort } = require('../db/data/test-data/categories');
 
-const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments} = require('../model/model')
+const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, retrieveComment} = require('../model/model')
 //handling sql queries and directing them to an output in the controller
 
 const app = express();
@@ -91,5 +91,13 @@ exports.getComments = (req, res) => {
   fetchAllComments()
   .then((comments) => {
     res.status(200).send({comments});
+  })
+}
+
+exports.getOneComment = (req, res) => {
+  const {comment_id} = req.params
+  OneComment(comment_id)
+  .then((comment) => {
+    res.status(200).send({comment})
   })
 }
