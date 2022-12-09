@@ -3,7 +3,7 @@ const express = require('express');
 const { restart } = require('nodemon');
 const { sort } = require('../db/data/test-data/categories');
 
-const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, retrieveComment} = require('../model/model')
+const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, OneComment} = require('../model/model')
 //handling sql queries and directing them to an output in the controller
 
 const app = express();
@@ -78,15 +78,16 @@ exports.getCommentByReviewId = (req, res, next) => {
   })
   .catch(next);
 } 
-exports.DeleteComment = (req, res, next) => {
-  console.log(req)
-  const {comment_id} = req.params
-  removeComment(comment_id)
-  .then((comment) => {
-    res.status(204).delete({comment})
-  })
-  .catch(next);
-}
+// exports.DeleteComment = (req, res, next) => {
+//   const {comment_id} = req.params
+//   removeComment(comment_id)
+//   console.log(req.body)
+//   console.log(req.route)
+//   .then((comment) => {
+//     res.status(204).delete({comment})
+//   })
+//   .catch(next);
+// }
 exports.getComments = (req, res) => {
   fetchAllComments()
   .then((comments) => {
@@ -94,11 +95,15 @@ exports.getComments = (req, res) => {
   })
 }
 
-// exports.getOneComment = (req, res) => {
-//   const {comment_id} = req.params
-//   console.log(req.params)
-//   OneComment(comment_id)
-//   .then((comment) => {
-//     res.status(200).send({comment})
-//   })
-// }
+exports.getOneComment = (req, res, next) => {
+  const {comment_id} = req.params
+  OneComment(comment_id)
+  .then((comment) => {
+    console.log(comment.rows)
+    res.status(200).send(comment.rows)
+  })
+  .catch((err) => {
+    next(err)
+    console.log(err)
+  });
+}

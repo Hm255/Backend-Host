@@ -30,8 +30,10 @@ app.post("/api/reviews/:review_id/comments", newCommentByReviewID)
 app.get("/api/comments", getComments);
 
 
-// app.get("/api/comments/:comment_id", getOneComment) //gets a comment_id and deletes the comment relating to it
-app.delete("/api/comments/:comment_id", DeleteComment) //gets a comment_id and deletes the comment relating to it
+app.get("/api/comments/:comment_id", getOneComment) 
+
+//gets a comment_id and the comment relating to it
+// app.delete("/api/comments/:comment_id", DeleteComment) //gets a comment_id and deletes the comment relating to it
 
 app.get("/api/users", getUsers);
 
@@ -50,6 +52,9 @@ app.use((err, req, res, next) => {
   }
   else if (err.code === '23502'){
     res.status(404).send({msg: "Item does not exist"});
+  }
+  else if(err.code === ''){
+    res.status(204).send({msg: "No content"});
   }
   else{
     next()

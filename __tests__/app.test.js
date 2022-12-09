@@ -137,26 +137,39 @@ describe('POST /api/reviews/:review_id/comments', () => {
   });
 })
 
-
-describe('DELETE /api/comments/:comment_id', () => {
-
-  const comment_id = 1
-  
-  test('204: deletes comment', () => {
+describe('GET /api/comments/:comment_id', () => {
+  test('200: gets comment', () => {
   return request(app)
-  .delete(`/api/comments/${comment_id}`)
-  .expect(204)
+  .get(`/api/comments/2`)
+  .expect(200)
   .then(({body})=>{
     console.log(body);
-    expect(body.msg).toBe({})
-    });
+    expect(body).toStrictEqual([{
+      comment_id: 2,
+      body: 'My dog loved this game too!',
+      review_id: 3,
+      author: 'mallionaire',
+      votes: 13,
+      created_at: '2021-01-18T10:09:05.410Z'
+    }]);
   })
  })
 
 
+// describe('DELETE /api/comments/:comment_id', () => {
 
-
-
+//   const comment_id = 1
+  
+//   test('204: deletes comment', () => {
+//   return request(app)
+//   .delete(`/api/comments/${comment_id}`)
+//   .expect(204)
+//   .then(({body})=>{
+//     console.log(body);
+//     expect(body.msg).toEqual('No Content')
+//     });
+//   })
+//  })
 
   describe("GET/api/reviews/:review_id", () => {
     test("200: returns a result", () => {
@@ -351,4 +364,4 @@ describe('DELETE /api/comments/:comment_id', () => {
       });
     })
   })
-
+})
