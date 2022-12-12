@@ -78,16 +78,20 @@ exports.getCommentByReviewId = (req, res, next) => {
   })
   .catch(next);
 } 
-// exports.DeleteComment = (req, res, next) => {
-//   const {comment_id} = req.params
-//   removeComment(comment_id)
-//   console.log(req.body)
-//   console.log(req.route)
-//   .then((comment) => {
-//     res.status(204).delete({comment})
-//   })
-//   .catch(next);
-// }
+
+exports.DeleteComment = (req, res, next) => {
+  console.log(req.body, '<< req.body|', req.route)
+  const {comment_id} = req.params
+  if(!res){
+    res.status(204).send('No Content')
+  }
+  removeComment(comment_id)
+  .then((comment) => {
+    res.status(204).delete({comment})
+  })
+  .catch(next);
+}
+
 exports.getComments = (req, res) => {
   fetchAllComments()
   .then((comments) => {
@@ -97,6 +101,7 @@ exports.getComments = (req, res) => {
 
 exports.getOneComment = (req, res, next) => {
   const {comment_id} = req.params
+  console.log(req.route)
   OneComment(comment_id)
   .then((comment) => {
     console.log(comment.rows)

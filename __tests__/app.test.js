@@ -156,20 +156,16 @@ describe('GET /api/comments/:comment_id', () => {
  })
 
 
-// describe('DELETE /api/comments/:comment_id', () => {
-
-//   const comment_id = 1
-  
-//   test('204: deletes comment', () => {
-//   return request(app)
-//   .delete(`/api/comments/${comment_id}`)
-//   .expect(204)
-//   .then(({body})=>{
-//     console.log(body);
-//     expect(body.msg).toEqual('No Content')
-//     });
-//   })
-//  })
+describe('DELETE /api/comments/:comment_id', () => {
+  test('204: deletes comment', () => {
+  return request(app)
+  .delete(`/api/comments/1`)
+  .expect(204)
+  .then(({body})=>{
+    expect(body.msg).toEqual('No Content')
+    });
+  })
+ })
 
   describe("GET/api/reviews/:review_id", () => {
     test("200: returns a result", () => {

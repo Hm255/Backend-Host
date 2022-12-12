@@ -95,9 +95,9 @@ exports.postCommentByReviewID = (comment, review_id) => {
     })
 }
 
-// exports.removeComment = (comment_id) => {
-//     return db.query(`DELETE FROM comments WHERE comment_id=$1 RETURNING *`, [comment_id])
-// }
+exports.removeComment = (comment_id) => {
+    return db.query(`DELETE FROM comments WHERE comments.comment_id=$1`, [comment_id])
+}
 
 exports.OneComment = (comment_id) => {
     return db.query(`SELECT comments.* FROM comments WHERE comments.comment_id=$1`, [comment_id]) //should return 1 comment
