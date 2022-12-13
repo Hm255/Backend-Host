@@ -15,6 +15,21 @@ afterAll(() => {
 
   });
 
+
+  // describe("GET/api", () => {
+  //   test("200: return endpoints array", () => {
+  //     return request(app)
+  //       .get('/api')
+  //       .expect(200)
+  //       .then(({ body: {endpoints} }) => {
+  //         expect(endpoints).toHaveLength(4);
+  //         expect(endpoints.forEach((endpoint)=>{
+  //           expect(endpoint).toEqual(expect.objectContaining({slug: expect.any(String), description: expect.any(String)}))
+  //         }))
+  //       });
+  //   });
+  // });
+
   describe("GET/api/categories", () => {
     test("200: return categories array", () => {
       return request(app)

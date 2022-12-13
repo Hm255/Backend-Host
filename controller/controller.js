@@ -3,7 +3,7 @@ const express = require('express');
 const { restart } = require('nodemon');
 const { sort } = require('../db/data/test-data/categories');
 
-const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, OneComment} = require('../model/model')
+const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, OneComment, fetchAll} = require('../model/model')
 //handling sql queries and directing them to an output in the controller
 
 const app = express();
@@ -80,11 +80,12 @@ exports.DeleteComment = (req, res, next) => {
   .catch(next);
   }
  
-exports.getComments = (req, res) => {
+exports.getComments = (req, res, next) => {
   fetchAllComments()
   .then((comments) => {
     res.status(200).send({comments});
   })
+  .catch(next)
 }
 exports.getOneComment = (req, res, next) => {
   const {comment_id} = req.params
@@ -96,4 +97,14 @@ exports.getOneComment = (req, res, next) => {
     next(err)
     console.log(err)
   });
+}
+exports.getAll = (req, res) => {
+fetchAll()
+.then((endpoints) => {
+  res.status(200).send(endpoints)
+})
+.catch((err)=>{
+  next(err)
+  console.log(err)
+})
 }

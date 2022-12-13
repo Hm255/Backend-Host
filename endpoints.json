@@ -30,5 +30,116 @@
         }
       ]
     }
+  },
+  "GET /api/review/review_id": { 
+    "description": "allows users to view one review",
+    "queries": [],
+    "exampleResponse": {
+      "review": 
+        {
+          "title": "One Night Ultimate Werewolf",
+          "designer": "Akihisa Okui",
+          "owner": "happyamy2016",
+          "review_img_url": "https://images.pexels.com/photos/5350049/pexels-photo-5350049.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          "category": "hidden-roles",
+          "created_at": 1610964101251,
+          "votes": 5
+        }
+    }
+  },
+  "GET /api/comments": {
+    "description": "serves an array of all comments",
+    "queries": [],
+    "exampleResponse": {
+      "comments": [
+        {
+          "body": "I loved this game too!",
+          "votes": 16,
+          "author": "happyamy2016",
+          "review_id": 2,
+          "created_at": "new Date(1511354163389)"
+        }
+      ]
+    }
+  },
+  "GET /api/comments/:comment_id": {
+    "description": "serves a single comment",
+    "queries": [],
+    "exampleResponse": {
+      "comment": 
+        {
+          "body": "I loved this game too!",
+          "votes": 16,
+          "author": "happyamy2016",
+          "review_id": 2,
+          "created_at": "new Date(1511354163389)"
+        }
+      }
+    },
+    "GET /api/review/review_id/comments": { 
+    "description": "serves users all the comments of one review",
+    "queries": [],
+    "exampleResponse": {
+      "comments": 
+      [
+        {
+          "body": "I loved this game too!",
+          "votes": 16,
+          "author": "happyamy2016",
+          "review_id": 2,
+          "created_at": "new Date(1511354163389)"
+        }
+      ]
+    }
+  },
+  "GET /api/users": { 
+    "description": "serves all users",
+    "queries": [],
+    "exampleResponse": {
+      "users": 
+      [
+        {
+          "username": "tickle122",
+          "name": "Tom Tickle",
+          "avatar_url":
+            "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"
+        }
+      ]
+    }
+  },
+  "POST /api/reviews/:review_id/comments": { 
+    "description": "post a comment on a review",
+    "queries": [],
+    "exampleResponse": {
+      "comment": 
+      {
+        "body": "I loved this game too!",
+        "votes": 16,
+        "author": "happyamy2016",
+        "review_id": 2,
+        "created_at": "new Date(1511354163389)"
+      }
+    }
+  },
+  "PATCH /api/reviews/:review_id/comments": { 
+    "description": "edits a comment on a review",
+    "queries": [],
+    "exampleResponse": {
+      "comment": 
+      {
+        "body": "I really loved this game too!",
+        "votes": 16,
+        "author": "happyamy2016",
+        "review_id": 2,
+        "created_at": "new Date(1511354163389)"
+      }
+    }
+  },
+  "DELETE /api/comments/:comment_id": {
+    "description": "deletes a single comment",
+    "queries": [],
+    "exampleResponse": {
+      "comment": {}
+      }
   }
 }
