@@ -8,13 +8,11 @@ const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fet
 
 const app = express();
 
-exports.getCategories = (req, res) => {      //takes category data defined in the model and sends it through
+exports.getCategories = (req, res) => {      
     fetchCategories().then((categories) => {
       res.status(200).send({categories});
     });
   };
-
-
 exports.getReviewID = (req, res, next) => {
   const { review_id } = req.params
   return fetchReviewID(review_id)
@@ -26,7 +24,6 @@ exports.getReviewID = (req, res, next) => {
     next(err);
   })
 };
-
 exports.newCommentByReviewID = (req, res, next) => {
   const { review_id } = req.params
   const comment = req.body 
@@ -39,14 +36,11 @@ exports.newCommentByReviewID = (req, res, next) => {
     next(err);
   })
 };
-
-
 exports.getUsers = (req, res) => {      
   fetchUsers().then((users) => {
     res.status(200).send({users});
   });
 };
-
 exports.newRev = (req, res, next) => {
   const {inc_votes} = req.body     
   const {review_id} = req.params
@@ -59,7 +53,6 @@ exports.newRev = (req, res, next) => {
     next(err);
   })
 };
-
 exports.getReviews = (req, res, next) => {
   const {sortedBy, orderedBy, category} = req.query
   return fetchReviews(sortedBy, orderedBy, category)
@@ -68,7 +61,6 @@ exports.getReviews = (req, res, next) => {
   })
   .catch(next);
 }
-
 exports.getCommentByReviewId = (req, res, next) => {
   const {review_id} = req.params
   
@@ -78,33 +70,26 @@ exports.getCommentByReviewId = (req, res, next) => {
   })
   .catch(next);
 } 
-
 exports.DeleteComment = (req, res, next) => {
   console.log(req.body, '<< req.body|', req.route)
   const {comment_id} = req.params
-  if(!res){
-    res.status(204).send('No Content')
-  }
-  removeComment(comment_id)
-  .then((comment) => {
-    res.status(204).delete({comment})
+    removeComment(comment_id)
+  .then(() => {
+    res.status(204).send("Item does not exist")
   })
   .catch(next);
-}
-
+  }
+ 
 exports.getComments = (req, res) => {
   fetchAllComments()
   .then((comments) => {
     res.status(200).send({comments});
   })
 }
-
 exports.getOneComment = (req, res, next) => {
   const {comment_id} = req.params
-  console.log(req.route)
   OneComment(comment_id)
   .then((comment) => {
-    console.log(comment.rows)
     res.status(200).send(comment.rows)
   })
   .catch((err) => {

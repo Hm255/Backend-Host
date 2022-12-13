@@ -33,7 +33,9 @@ app.get("/api/comments", getComments);
 app.get("/api/comments/:comment_id", getOneComment) 
 
 //gets a comment_id and the comment relating to it
-app.delete("/api/comments/:comment_id", DeleteComment) //gets a comment_id and deletes the comment relating to it
+
+app.delete("/api/comments/:comment_id", DeleteComment) 
+//gets a comment_id and deletes the comment relating to it
 
 app.get("/api/users", getUsers);
 

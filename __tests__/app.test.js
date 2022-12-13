@@ -162,7 +162,7 @@ describe('DELETE /api/comments/:comment_id', () => {
   .delete(`/api/comments/1`)
   .expect(204)
   .then(({body})=>{
-    expect(body.msg).toEqual('No Content')
+    expect(body).toEqual({})
     });
   })
  })
