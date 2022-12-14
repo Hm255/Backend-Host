@@ -100,10 +100,13 @@ node: V18.1.2
   .env files:
   
   .env.test
+  <br>
   PGDATABASE=nc_games_test
 
   .env.development
+  <br>
   PGDATABASE=nc_games
 
   .env.production
+  <br>
   DATABASE_URL="postgres://vqsvtpzs:ovkKpeiD6a_1eXPw-MRflpq8dKVxBNqi@lucky.db.elephantsql.com/vqsvtpzs"
