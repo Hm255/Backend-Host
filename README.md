@@ -1,4 +1,6 @@
-hosted version : https://nc-game.cyclic.app/
+# board games review REST API
+
+## hosted version : https://nc-game.cyclic.app/
 
 this contains everything you need to know to run this program
 
@@ -6,7 +8,7 @@ The packages below are pasted in directly from my own package.json used to build
 
 the .env files have their content included below their names and all belong at the root folder
 
-Summary:
+## Summary:
 
 This is a rest API made using expressjs for people reviewing board games, it allows users to read reviews which can be filtered by genre, date made or both. It can also get each genre included. The sql used comes from Postgresql
 
@@ -16,13 +18,13 @@ It can also view every comment in the database in descending order of their id's
 
 It also allows users to post, edit and delete comments.
 
-Testing done with Jest:
+## Testing done with Jest:
 
 npm test app.test.js/npm t app - runs the jest tests
 
 "jest-sorted": "^1.0.14",
 "jest": "^27.5.1",
-    "jest-extended": "^2.0.0"
+"jest-extended": "^2.0.0"
 
 "jest": {
     "setupFilesAfterEnv": [
@@ -33,7 +35,7 @@ npm test app.test.js/npm t app - runs the jest tests
 
 This was tested with jest tests for each function, some tests measure whether the direct content is similar and other test if the returned content is at least of the correct type (object/string/number).
 
-cloning from github:
+## cloning from github:
 
 go to: https://github.com/Hm255/Backend-Host
 
@@ -55,7 +57,7 @@ npm run dev - listens on port localhost:9090 for rest API testing using postman/
 npm run setup-dbs - drops and re-creates the database tables
 
 
-Dependencies (used and working during production - 14-12-22):
+## Dependencies (used and working during production - 14-12-22):
 
 use npm install on its own to install the dependencies shown below into your package.json which should be at root level
 
@@ -79,7 +81,7 @@ use npm install on its own to install the dependencies shown below into your pac
 
 node: V18.1.2
 
-.gitignore - ignore node_modules and .env.* (anything starting with .env)
+## .gitignore - ignore node_modules and .env.* (anything starting with .env)
 
   .env files:
   
