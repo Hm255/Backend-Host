@@ -71,7 +71,6 @@ exports.getCommentByReviewId = (req, res, next) => {
   .catch(next);
 } 
 exports.DeleteComment = (req, res, next) => {
-  console.log(req.body, '<< req.body|', req.route)
   const {comment_id} = req.params
     removeComment(comment_id)
   .then(() => {
@@ -98,13 +97,13 @@ exports.getOneComment = (req, res, next) => {
     console.log(err)
   });
 }
-// exports.getAll = (req, res) => {
-// fetchAll()
-// .then((endpoints) => {
-//   res.status(200).send(endpoints)
-// })
-// .catch((err)=>{
-//   next(err)
-//   console.log(err)
-// })
-// }
+exports.getAll = (req, res) => {
+fetchAll()
+.then((endpoints) => {
+  res.status(200).send(endpoints)
+})
+.catch((err)=>{
+  next(err)
+  console.log(err)
+})
+}

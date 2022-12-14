@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-import endpoints from "./endpoints.json"
+const endpoints = require('./endpoints.json')
 const { getCategories, getReviewID, getUsers, newRev, getReviews, getCommentByReviewId, newCommentByReviewID, DeleteComment, getComments, getOneComment, getAll} = require("./controller/controller");
 
 
@@ -9,7 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/api", endpoints)
+console.log(endpoints)
+
+app.get("/api", (req, res) => {
+  res.status(200).send({ endpoints });
+});
 
 
 app.get("/api/categories", getCategories);  //endpoint invoked with required in getCategories originally from the controller

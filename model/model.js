@@ -103,6 +103,6 @@ exports.OneComment = (comment_id) => {
     return db.query(`SELECT comments.* FROM comments WHERE comments.comment_id=$1`, [comment_id]) //should return 1 comment
 }
 
-// exports.fetchAll = () => {
+exports.fetchAll = () => {
     
-// }
+}

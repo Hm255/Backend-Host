@@ -16,20 +16,17 @@ afterAll(() => {
   });
 
 
-  // describe("GET/api", () => {
-  //   test("200: return endpoints array", () => {
-  //     return request(app)
-  //       .get('/api')
-  //       .expect(200)
-  //       .then(({ body: {endpoints} }) => {
-  //         expect(endpoints).toHaveLength(11);
-  //         expect(endpoints.forEach((endpoint)=>{
-  //           expect.any(Object)
-  //         }))
-  //       });
-  //   });
-  // });
-
+  describe("GET/api", () => {
+    test("200: return endpoints array", () => {
+      return request(app)
+        .get('/api')
+        .expect(200)
+        .then(({ body: {endpoints} }) => {
+            expect(endpoints).toBeInstanceOf(Object)
+          })
+        })
+      })
+ 
   describe("GET/api/categories", () => {
     test("200: return categories array", () => {
       return request(app)
@@ -158,7 +155,6 @@ describe('GET /api/comments/:comment_id', () => {
   .get(`/api/comments/2`)
   .expect(200)
   .then(({body})=>{
-    console.log(body);
     expect(body).toStrictEqual([{
       comment_id: 2,
       body: 'My dog loved this game too!',
