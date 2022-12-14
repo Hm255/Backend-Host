@@ -22,8 +22,10 @@ It also allows users to post, edit and delete comments.
 
 npm test app.test.js/npm t app - runs the jest tests
 
-"jest-sorted": "^1.0.14",
-"jest": "^27.5.1",
+"jest-sorted": "^1.0.14"
+<br>
+"jest": "^27.5.1"
+<br>
 "jest-extended": "^2.0.0"
 
 "jest": {
@@ -63,19 +65,29 @@ use npm install on its own to install the dependencies shown below into your pac
 
 
 "dependencies": {
-    "axios": "^1.2.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.18.2",
-    "jest-sorted": "^1.0.14",
-    "nodemon": "^2.0.20",
-    "pg": "^8.8.0",
-    "pg-format": "^1.0.4",
+    "axios": "^1.2.0"
+    <br>
+    "cors": "^2.8.5"
+    <br>
+    "dotenv": "^16.0.0"
+    <br>
+    "express": "^4.18.2"
+    <br>
+    "jest-sorted": "^1.0.14"
+    <br>
+    "nodemon": "^2.0.20"
+    <br>
+    "pg": "^8.8.0"
+    <br>
+    "pg-format": "^1.0.4"
+    <br>
     "supertest": "^6.3.0"
   },
   "devDependencies": {
-    "husky": "^7.0.0",
-    "jest": "^27.5.1",
+    "husky": "^7.0.0"
+    <br>
+    "jest": "^27.5.1"
+    <br>
     "jest-extended": "^2.0.0"
   },
 
