@@ -91,7 +91,7 @@ use npm install on its own to install the dependencies shown below into your pac
     "jest": "^27.5.1"
     <br>
     "jest-extended": "^2.0.0"
-  },
+  }
 
 node: V18.1.2
 
