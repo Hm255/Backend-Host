@@ -22,9 +22,9 @@ afterAll(() => {
   //       .get('/api')
   //       .expect(200)
   //       .then(({ body: {endpoints} }) => {
-  //         expect(endpoints).toHaveLength(4);
+  //         expect(endpoints).toHaveLength(11);
   //         expect(endpoints.forEach((endpoint)=>{
-  //           expect(endpoint).toEqual(expect.objectContaining({slug: expect.any(String), description: expect.any(String)}))
+  //           expect.any(Object)
   //         }))
   //       });
   //   });
