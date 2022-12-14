@@ -98,13 +98,13 @@ exports.getOneComment = (req, res, next) => {
     console.log(err)
   });
 }
-exports.getAll = (req, res) => {
-fetchAll()
-.then((endpoints) => {
-  res.status(200).send(endpoints)
-})
-.catch((err)=>{
-  next(err)
-  console.log(err)
-})
-}
+// exports.getAll = (req, res) => {
+// fetchAll()
+// .then((endpoints) => {
+//   res.status(200).send(endpoints)
+// })
+// .catch((err)=>{
+//   next(err)
+//   console.log(err)
+// })
+// }
