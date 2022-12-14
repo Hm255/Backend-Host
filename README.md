@@ -1,74 +1,93 @@
-1. you should fork the repository
+hosted version : https://nc-game.cyclic.app/
 
-2. then you should clone this respository
+this contains everything you need to know to run this program
 
-3. use npm install to install necessary packages
+The packages below are pasted in directly from my own package.json used to build this work.
 
-4. you should create 2 .env files for this program (these need to be .gitignored)
-.env.test: this will run a test database so the database can be experiemented with without the danger of losing or altering information in the official database
-.env.dev this will run the official database and all its data
+the .env files have their content included below their names and all belong at the root folder
 
-these 2 .env files will contain the following:
+Summary:
 
-PGDATABASE=databasename/databasename_test
+This is a rest API made using expressjs for people reviewing board games, it allows users to read reviews which can be filtered by genre, date made or both. It can also get each genre included. The sql used comes from Postgresql
 
-<<<<<<< HEAD
-To keep track of the tasks involved in this project we're going to use a kanban board. Ensure that you work on one _ticket_ at time. You can click on the ticket to find out more information about what is required for the feature. A ticket is not considered complete unless both the happy path and errors response are handled. You can make use of the checklist on each ticket to keep track of the errors you want to handle. You can also make use of [error-handling.md](error-handling.md) to consider the error codes we may wish to respond with.
+It can view all the users 
 
-**Please ensure you work through the tickets in numerical order.**
+It can also view every comment in the database in descending order of their id's 
 
-## Git Branching and Pull Requests
+It also allows users to post, edit and delete comments.
 
-You will be working on each ticket on a new **branch**.
+Testing done with Jest:
 
-To create and switch to a new git branch use the command:
+npm test app.test.js/npm t app - runs the jest tests
 
-```
-git checkout -b <new branch name>
-```
+"jest-sorted": "^1.0.14",
+"jest": "^27.5.1",
+    "jest-extended": "^2.0.0"
 
-This will create a branch and move over to that branch. (Omit the `-b` flag if you wish to switch to an already existing branch).
+"jest": {
+    "setupFilesAfterEnv": [
+      "jest-extended/all",
+      "jest-sorted"
+    ]
+  }
 
-We recommend that you name the branch after the number assigned to each ticket via the header. eg. `ncnews-1`
+This was tested with jest tests for each function, some tests measure whether the direct content is similar and other test if the returned content is at least of the correct type (object/string/number).
 
-When pushing the branch to git hub ensure that you make reference to the branch you are pushing to on the remote.
+cloning from github:
 
-```
-git push origin <branch name>
-```
+go to: https://github.com/Hm255/Backend-Host
 
-From github you can make a pull request and share the link and ticket number via a pull request specific nchelp using the command `nchelp pr`. A tutor will swing by to review your code. Ensure that you keep your trello up to date whilst you await the PR approval. Regular `nchelp` will be available for when you need support.
+in the code drop down near the middle, copy the link.
 
-Once a pull request been accepted be sure to switch back to the main branch and pull down the updated changes.
+in a terminal, navigate to the folder you want and do this:
 
-```
-git checkout main
+git clone [pasted-clone-link-from-github]
 
-git pull origin main
-```
+the project should be there without its dependencies or .env files as these have been and will still need to be .gitignored once remade from the info under dependencies/.gitignore.
 
-You can tidy up your local branches once they have been pull into main by deleting them:
 
-```
-git branch -D <local branch>
-```
+npm run functions:
 
-## Husky
+npm run seed - seed's the database, do this when first running the tests on a client API 
 
-To ensure we are not commiting broken code this project makes use of git hooks. Git hooks are scripts triggered during certain events in the git lifecycle. Husky is a popular package which allows us to set up and maintain these scripts. This project makes use a _pre-commit hook_. When we attempt to commit our work, the script defined in the `pre-commit` file will run. If any of our tests fail than the commit will be aborted.
+npm run dev - listens on port localhost:9090 for rest API testing using postman/insomnia
 
-The [Husky documentation](https://typicode.github.io/husky/#/) explains how to configure Husky for your own project as well as creating your own custom hooks.\_
+npm run setup-dbs - drops and re-creates the database tables
 
-// describe ("GET/api/reviews/:review_id", () => {
-//   test("returns review_id", () => {
-//     return request(app)
-//     .get(`api/review/:review_id/$1`)
-//     .expect(200)
-//     .then(({body: {reviews}}) => {
-//     .expect(reviews).toHaveProperty()
-//     })
-//   })
-// })
-=======
-.env files: these files will select which database to use depending on the file chosen (test will run the test db). 
->>>>>>> 1f24d0befff556c7194ad3c4d7a1f7d3e67075ba
+
+Dependencies (used and working during production - 14-12-22):
+
+use npm install on its own to install the dependencies shown below into your package.json which should be at root level
+
+
+"dependencies": {
+    "axios": "^1.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2",
+    "jest-sorted": "^1.0.14",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "pg-format": "^1.0.4",
+    "supertest": "^6.3.0"
+  },
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "jest": "^27.5.1",
+    "jest-extended": "^2.0.0"
+  },
+
+node: V18.1.2
+
+.gitignore - ignore node_modules and .env.* (anything starting with .env)
+
+  .env files:
+  
+  .env.test
+  PGDATABASE=nc_games_test
+
+  .env.development
+  PGDATABASE=nc_games
+
+  .env.production
+  DATABASE_URL="postgres://vqsvtpzs:ovkKpeiD6a_1eXPw-MRflpq8dKVxBNqi@lucky.db.elephantsql.com/vqsvtpzs"
