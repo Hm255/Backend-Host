@@ -82,7 +82,8 @@ use npm install on its own to install the dependencies shown below into your pac
     "pg-format": "^1.0.4"
     <br>
     "supertest": "^6.3.0"
-  },
+  }
+  <br>
   "devDependencies": {
     "husky": "^7.0.0"
     <br>
