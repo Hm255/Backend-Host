@@ -1,7 +1,4 @@
-
 const express = require('express');
-const { restart } = require('nodemon');
-const { sort } = require('../db/data/test-data/categories');
 
 const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, OneComment, fetchAll} = require('../model/model')
 //handling sql queries and directing them to an output in the controller
@@ -24,6 +21,7 @@ exports.getReviewID = (req, res, next) => {
     next(err);
   })
 };
+
 exports.newCommentByReviewID = (req, res, next) => {
   const { review_id } = req.params
   const comment = req.body 
@@ -36,6 +34,7 @@ exports.newCommentByReviewID = (req, res, next) => {
     next(err);
   })
 };
+
 exports.getUsers = (req, res) => {      
   fetchUsers().then((users) => {
     res.status(200).send({users});
@@ -61,6 +60,7 @@ exports.getReviews = (req, res, next) => {
   })
   .catch(next);
 }
+
 exports.getCommentByReviewId = (req, res, next) => {
   const {review_id} = req.params
   
@@ -70,6 +70,7 @@ exports.getCommentByReviewId = (req, res, next) => {
   })
   .catch(next);
 } 
+
 exports.DeleteComment = (req, res, next) => {
   const {comment_id} = req.params
     removeComment(comment_id)
@@ -77,7 +78,7 @@ exports.DeleteComment = (req, res, next) => {
     res.status(204).send("Item does not exist")
   })
   .catch(next);
-  }
+}
  
 exports.getComments = (req, res, next) => {
   fetchAllComments()

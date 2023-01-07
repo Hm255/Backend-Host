@@ -10,10 +10,8 @@ exports.fetchCategories = () => {
 }
 
 exports.fetchReviewID = (review_id) => {
-    
     return db.query(`SELECT reviews.*, COUNT(comments.body) ::INT AS comment_count FROM reviews LEFT JOIN comments ON reviews.review_id = comments.review_id WHERE reviews.review_id = $1 GROUP BY reviews.review_id`, [review_id])
     .then(({rows})=>{
-        
     return rows[0];  
     })
 }
@@ -42,8 +40,7 @@ exports.fetchReview = (review, category) => { //start of ticket 8
 
 exports.fetchComments = (review_id) => {
     return db.query(`SELECT reviews.*, reviews.body ::VARCHAR2 AS comments FROM reviews LEFT JOIN comments ON reviews.review_id = comments.review_id WHERE reviews.review_id = $1 GROUP BY reviews.created_at`, [review_id])
-    .then(({rows})=>{
-        
+    .then(({rows})=>{ 
     return rows;  
     })
 }
@@ -88,7 +85,7 @@ exports.fetchCommentbyReviewID = (review_id) => {
 }
 
 exports.postCommentByReviewID = (comment, review_id) => {
-    return db.query(`INSERT into comments (author, body, review_id) VALUES ($1, $2, $3) RETURNING *`, [comment.username, comment.body, review_id])
+    return db.query(`INSERT into comments (author, body, review_id) VALUES ($1, $2, $3) WHERE review_id=$2 RETURNING *`, [comment.username, comment.body, review_id])
     .then(({rows})=> {
         
         return rows;

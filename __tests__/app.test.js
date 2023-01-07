@@ -15,7 +15,6 @@ afterAll(() => {
 
   });
 
-
   describe("GET/api", () => {
     test("200: return endpoints array", () => {
       return request(app)
@@ -40,7 +39,6 @@ afterAll(() => {
         });
     });
   });
-
 
   describe("GET/api/reviews", () => {
     test("200: return reviews array", () => {
@@ -75,6 +73,7 @@ afterAll(() => {
         .get('/api/reviews?sortedBy=review_id&orderedBy=asc')
         .expect(200)
         .then(({ body: {reviews} }) => {
+          console.log(reviews)
           expect(reviews).toHaveLength(13);
           expect(reviews.forEach((review)=>{
             expect(review).toEqual(expect.objectContaining({owner: expect.any(String), title: expect.any(String), review_id: expect.any(Number), category: expect.any(String), review_img_url: expect.any(String), created_at: expect.any(String), votes: expect.any(Number), designer: expect.any(String), review_body: expect.any(String), comment_count: expect.any(Number)}))
