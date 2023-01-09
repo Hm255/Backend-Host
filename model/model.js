@@ -84,6 +84,9 @@ exports.fetchCommentbyReviewID = (review_id) => {
 }
 
 exports.postCommentByReviewID = (comment, review_id) => {
+    if (!comment.username || !comment.body) {
+        return Promise.reject({ status: 400, message: "Missing body" });
+      }
     return db.query(`INSERT into comments (author, body, review_id) VALUES ($1, $2, $3) WHERE review_id=$3 RETURNING *`, [comment.username, comment.body, review_id])
     .then(({rows})=> {
         

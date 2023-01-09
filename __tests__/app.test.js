@@ -115,7 +115,6 @@ return request(app)
 });
 });
 
-
 describe('POST /api/reviews/:review_id/comments', () => {
   const review_id = 2
   const comment = {
