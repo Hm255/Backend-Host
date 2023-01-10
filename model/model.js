@@ -92,9 +92,12 @@ exports.postCommentByReviewID = (comment, review_id) => {
 }
 
 exports.removeComment = (comment_id) => {
+    if(comment.username){
+        return Promise.reject({status: 400, message: "You can only delete comments you created"})
+    }
     return db.query(`DELETE FROM comments WHERE comments.comment_id=$1`, [comment_id]).then(({rowCount})=>{
         if(rowCount === 0) {
-            return Promise.reject({ status: 404, message: "Id not found" });
+            return Promise.reject({ status: 204, message: "comment deleted" });
         }
     })
 }

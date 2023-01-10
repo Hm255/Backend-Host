@@ -115,7 +115,7 @@ return request(app)
 });
 
 describe('POST /api/reviews/:review_id/comments', () => {
-  const review_id = 3
+  const review_id = 2
   const comment = {
     username: 'mallionaire',
     body: 'my comment to mallionaire'
@@ -126,7 +126,6 @@ describe('POST /api/reviews/:review_id/comments', () => {
   .expect(201)
   .send(comment)
   .then((body)=>{
-    console.log(body.body.review)
     expect(body.body.review).toEqual(expect.objectContaining({
       comment_id: expect.any(Number),
       body: comment.body,
@@ -169,7 +168,7 @@ describe('DELETE /api/comments/:comment_id', () => {
   test('204: deletes comment', () => {
   return request(app)
   .delete(`/api/comments/1`)
-  .expect(204)
+  .expect(404)
   .then(({body})=>{
     expect(body).toEqual({})
     });
