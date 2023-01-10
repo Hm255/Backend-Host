@@ -25,6 +25,7 @@ exports.getReviewID = (req, res, next) => {
 exports.newCommentByReviewID = (req, res, next) => {
   const { review_id } = req.params
   const comment = req.body 
+  console.log(req.body, req.params)
    postCommentByReviewID(comment, review_id)
   .then((review) => {
   return res.status(201).send({review: review[0]})

@@ -73,7 +73,6 @@ afterAll(() => {
         .get('/api/reviews?sortedBy=review_id&orderedBy=asc')
         .expect(200)
         .then(({ body: {reviews} }) => {
-          console.log(reviews)
           expect(reviews).toHaveLength(13);
           expect(reviews.forEach((review)=>{
             expect(review).toEqual(expect.objectContaining({owner: expect.any(String), title: expect.any(String), review_id: expect.any(Number), category: expect.any(String), review_img_url: expect.any(String), created_at: expect.any(String), votes: expect.any(Number), designer: expect.any(String), review_body: expect.any(String), comment_count: expect.any(Number)}))
@@ -116,7 +115,7 @@ return request(app)
 });
 
 describe('POST /api/reviews/:review_id/comments', () => {
-  const review_id = 2
+  const review_id = 3
   const comment = {
     username: 'mallionaire',
     body: 'my comment to mallionaire'
@@ -127,6 +126,7 @@ describe('POST /api/reviews/:review_id/comments', () => {
   .expect(201)
   .send(comment)
   .then((body)=>{
+    console.log(body.body.review)
     expect(body.body.review).toEqual(expect.objectContaining({
       comment_id: expect.any(Number),
       body: comment.body,
