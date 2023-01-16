@@ -31,7 +31,7 @@ exports.newCommentByReviewID = (req, res, next) => {
   return res.status(201).send({review: review[0]})
   })
   .catch((err)=>{
-    
+    console.log(err)
     next(err);
   })
 };

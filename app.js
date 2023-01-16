@@ -45,9 +45,10 @@ app.use((err, req, res, next) => {
   res.status(400).send({ msg: "invalid type (type is wrong)" });
   }
   else if(err.code === '22003'){
-    res.status(404).send({msg: "Item does not exist, (comment is not existent)"});
+    res.status(404).send({msg: "Item does not exist, (comment is not posted/existent)"});
   }
   else if (err.code === '23502'){
+    console.log(err)
     res.status(404).send({msg: "Item does not exist, (primary key column may have a null value)"});
   }
   else if(err.code === ''){
