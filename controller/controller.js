@@ -17,7 +17,7 @@ exports.getReviewID = (req, res, next) => {
   return res.status(200).send({review})
   })
   .catch((err)=>{
-    
+    console.log(err)
     next(err);
   })
 };
@@ -59,7 +59,9 @@ exports.getReviews = (req, res, next) => {
   .then((reviews) => {
     return res.status(200).send({reviews});
   })
-  .catch(next);
+  .catch((err) => {
+    next(err)
+  });
 }
 
 exports.getCommentByReviewId = (req, res, next) => {
@@ -69,7 +71,9 @@ exports.getCommentByReviewId = (req, res, next) => {
   .then((comment) => {
     return res.status(200).send({comment});
   })
-  .catch(next);
+  .catch((err) => {
+    next(err)
+  });
 } 
 
 exports.DeleteComment = (req, res, next) => {
@@ -78,7 +82,9 @@ exports.DeleteComment = (req, res, next) => {
   .then(() => {
     res.status(204).send("Item does not exist")
   })
-  .catch(next);
+  .catch((err)=>{
+    next(err)
+  });
 }
  
 exports.getComments = (req, res, next) => {
@@ -86,7 +92,9 @@ exports.getComments = (req, res, next) => {
   .then((comments) => {
     res.status(200).send({comments});
   })
-  .catch(next)
+  .catch((err)=>{
+    next(err);
+  })
 }
 exports.getOneComment = (req, res, next) => {
   const {comment_id} = req.params
@@ -94,11 +102,11 @@ exports.getOneComment = (req, res, next) => {
   .then((comment) => {
     res.status(200).send(comment.rows)
   })
-  .catch((err) => {
+  .catch((err)=>{
     next(err)
-    console.log(err)
   });
-}
+  };
+
 exports.getAll = (req, res) => {
 fetchAll()
 .then((endpoints) => {
