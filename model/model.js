@@ -33,6 +33,7 @@ exports.editReview = (inc_votes, review_id) => {
 exports.fetchReview = (review, category) => { //start of ticket 8
     return db.query(`SELECT reviews.*,  owner ::VARCHAR2 AS owner FROM reviews LEFT JOIN users ON reviews.owner = users.username`)
     .then(({rows})=> {
+        console.log(rows);
         return rows;
     })
 }
@@ -82,6 +83,17 @@ exports.fetchCommentbyReviewID = (review_id) => {
         return rows;
     })
 }
+
+exports.checkCommentExists = async (review_id) => {
+    const dbOutput = await db.query(
+      'SELECT comments.* FROM comments WHERE comments.review_id = $1;',
+      [review_id]
+    );
+    if (dbOutput.rows.length === 0) {
+      // resource does NOT exist
+      return Promise.reject({ status: 404, msg: 'Comments not found' });
+    }
+  };
 
 exports.postCommentByReviewID = (comment, review_id) => {
     return db.query(`INSERT into comments (author, body, review_id) VALUES ($1, $2, $3) RETURNING *`, [comment.username, comment.body, review_id])

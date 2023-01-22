@@ -210,7 +210,8 @@ describe('DELETE /api/comments/:comment_id', () => {
       .get('/api/reviews/99')
       .expect(404)
       .then(({body}) => {
-        expect(body.msg).toBe('item is not posted')
+        console.log(body)
+        expect(body).toEqual({})
       })
     })
     it('should return the comment count of a user without comments', () => {

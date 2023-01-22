@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, OneComment, fetchAll} = require('../model/model')
+const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, OneComment, fetchAll, checkCommentExists} = require('../model/model')
 //handling sql queries and directing them to an output in the controller
 
 const app = express();
@@ -14,7 +14,11 @@ exports.getReviewID = (req, res, next) => {
   const { review_id } = req.params
   return fetchReviewID(review_id)
   .then((review) => {
+    if(review === undefined){
+      return res.status(404).send({review})
+    }
   return res.status(200).send({review})
+  
   })
   .catch((err)=>{
     console.log(err)
