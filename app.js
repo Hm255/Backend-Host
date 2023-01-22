@@ -45,7 +45,7 @@ app.use((err, req, res, next) => {
   res.status(400).send({ msg: "invalid type (type is wrong)" });
   }
   else if(err.code === '22003'){
-    res.status(404).send({msg: "Item does not exist, (comment is not posted/existent)"});
+    res.status(404).send({msg: "item is not posted"});
   }
   else if (err.code === '23502'){
     console.log(err)

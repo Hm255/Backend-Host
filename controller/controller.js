@@ -49,7 +49,6 @@ exports.newRev = (req, res, next) => {
   res.status(200).send({review});
   })
   .catch((err)=>{
-    
     next(err);
   })
 };
@@ -66,10 +65,11 @@ exports.getReviews = (req, res, next) => {
 
 exports.getCommentByReviewId = (req, res, next) => {
   const {review_id} = req.params
-  
   return fetchCommentbyReviewID(review_id)
   .then((comment) => {
+    if(comment !== null){
     return res.status(200).send({comment});
+    }
   })
   .catch((err) => {
     next(err)

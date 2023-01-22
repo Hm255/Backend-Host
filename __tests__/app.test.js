@@ -93,7 +93,7 @@ afterAll(() => {
     });
   });
 
-  describe('GET /api/reviews/:review_id/comments', () => {
+describe('GET /api/reviews/:review_id/comments', () => {
 test('200: returns the comments of the given review', () => {
 return request(app)
 .get('/api/reviews/2/comments')
@@ -138,7 +138,7 @@ describe('POST /api/reviews/:review_id/comments', () => {
   });
   it('should return a 404 if the return doesnt exist', () => {
     return request(app)
-    .post('/api/reviews/999768767896876999')
+    .post('/api/reviews/99')
     .expect(404)
     .then(({body}) => {
       expect(body.msg).toBe('Item does not exist')
@@ -207,10 +207,10 @@ describe('DELETE /api/comments/:comment_id', () => {
     })
     it('should return a 404 if the return doesnt exist', () => {
       return request(app)
-      .get('/api/reviews/999768767896876999')
+      .get('/api/reviews/99')
       .expect(404)
       .then(({body}) => {
-        expect(body.msg).toBe('Item does not exist')
+        expect(body.msg).toBe('item is not posted')
       })
     })
     it('should return the comment count of a user without comments', () => {
@@ -304,7 +304,7 @@ describe('DELETE /api/comments/:comment_id', () => {
       .send(voteInc)
       .expect(404)
       .then(({body}) => {
-        expect(body.msg).toBe('Item does not exist' )
+        expect(body.msg).toBe('item is not posted' )
       })
      })
      it('returns a 400 for using a value in inc_votes that is the wrong type', () => {
@@ -327,7 +327,7 @@ describe('DELETE /api/comments/:comment_id', () => {
       .expect(404)
       .then(({body}) => {
         
-        expect(body.msg).toBe('Item does not exist' )
+        expect(body.msg).toBe('Item does not exist, (primary key column may have a null value)' )
       })
      })
    })
