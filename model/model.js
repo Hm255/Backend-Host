@@ -52,14 +52,16 @@ exports.fetchReviews = (sortedBy = "created_at", orderedBy = "desc", category) =
         queryStr += ` WHERE reviews.category = $1 
         GROUP BY reviews.review_id 
         ORDER BY ${sortedBy} ${orderedBy}`;
-        
         return db.query(queryStr, [category])
         .then(({rows}) => {
             return rows;
         }).catch((err) => {
             console.log(err)
         })
-    }
+        }
+        else if(!sortedBy || !orderedBy){
+            return Promise.reject({ status: 404, message: "missing queries" });
+        }
     else{
         return db.query(`SELECT reviews.*, COUNT(comments.comment_id) ::INT AS comment_count FROM reviews LEFT JOIN comments ON comments.review_id = reviews.review_id 
         GROUP BY reviews.review_id
