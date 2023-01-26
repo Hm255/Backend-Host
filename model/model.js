@@ -60,7 +60,7 @@ exports.fetchReviews = (sortedBy = "created_at", orderedBy = "desc", category) =
         })
         }
         else if(!sortedBy || !orderedBy){
-            return Promise.reject({ status: 404, message: "missing queries" });
+            return Promise.reject({ status: 400, message: "missing queries" });
         }
     else{
         return db.query(`SELECT reviews.*, COUNT(comments.comment_id) ::INT AS comment_count FROM reviews LEFT JOIN comments ON comments.review_id = reviews.review_id 
