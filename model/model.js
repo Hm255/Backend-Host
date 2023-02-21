@@ -30,10 +30,17 @@ exports.editReview = (inc_votes, review_id) => {
     })  
 }
 
+exports.commentVoter = (inc_votes, comment_id) => {
+    return db.query(`UPDATE comments SET votes = votes + $1 WHERE comments.comment_id = $2 RETURNING *`, [inc_votes, comment_id])
+    .then(({rows})=>{
+        console.log(rows)
+        return rows[0];
+    })  
+}
+
 exports.fetchReview = (review, category) => { //start of ticket 8
     return db.query(`SELECT reviews.*,  owner ::VARCHAR2 AS owner FROM reviews LEFT JOIN users ON reviews.owner = users.username`)
     .then(({rows})=> {
-        console.log(rows);
         return rows;
     })
 }
@@ -114,8 +121,4 @@ exports.removeComment = (comment_id) => {
 
 exports.OneComment = (comment_id) => {
     return db.query(`SELECT comments.* FROM comments WHERE comments.comment_id=$1`, [comment_id]) //should return 1 comment
-}
-
-exports.fetchAll = () => {
-    
 }

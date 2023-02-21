@@ -4,7 +4,6 @@ const request = require("supertest");
 const db = require("../db/connection");
 const seed = require('../db/seeds/seed');
 const {expect} = require('@jest/globals'); 
-const comments = require("../db/data/test-data/comments");
 
 beforeEach(()=>{
   return seed(testData)
@@ -12,7 +11,6 @@ beforeEach(()=>{
 
 afterAll(() => {
     db.end();
-
   });
 
   describe("GET/api", () => {
@@ -210,7 +208,7 @@ describe('DELETE /api/comments/:comment_id', () => {
       .get('/api/reviews/99')
       .expect(404)
       .then(({body}) => {
-        console.log(body)
+       
         expect(body).toEqual({})
       })
     })
@@ -270,6 +268,7 @@ describe('DELETE /api/comments/:comment_id', () => {
       .send(voteInc)
       .expect(200)
       .then(({body})=>{
+       
         const review = body.review
         expect(review).toEqual( {
           title: 'Ultimate Werewolf',
@@ -333,6 +332,29 @@ describe('DELETE /api/comments/:comment_id', () => {
      })
    })
       
+   describe("PATCH /api/comments/:comment_id", () => {
+       it('should return the edited comment', () => {
+       const comment_id = 2
+       const voteInc = {inc_votes: 1}
+       return request(app)
+       .patch(`/api/comments/${comment_id}`)
+       .send(voteInc)
+       .expect(200)
+       .then(({body})=>{
+        console.log(body)
+           const comment = body.comment
+           expect(comment).toEqual({
+            comment_id: 2,
+            body: 'My dog loved this game too!',
+            review_id: 3,
+            author: 'mallionaire',
+            votes: 14,
+            created_at: '2021-01-18T10:09:05.410Z'
+          })
+       })
+   })
+  })
+
   describe("GET/api/users", () => {
     it('should return all users details as shown', () => {
       return request (app)
@@ -370,3 +392,4 @@ describe('DELETE /api/comments/:comment_id', () => {
     })
   })
 })
+

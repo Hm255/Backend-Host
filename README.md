@@ -10,7 +10,7 @@ the .env files have their content included below their names and all belong at t
 
 ## Summary:
 
-This is a rest API made using expressjs for people reviewing board games, it allows users to read reviews which can be filtered by genre, date made or both. It can also get each genre included. The sql used comes from Postgresql
+This is a rest API made using ExpressJS for people reviewing board games, it allows users to read reviews which can be filtered by genre, date made or both. It can also get each genre included. The sql used comes from Postgresql
 
 It can view all the users 
 

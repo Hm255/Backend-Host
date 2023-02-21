@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const endpoints = require('./endpoints.json')
-const { getCategories, getReviewID, getUsers, newRev, getReviews, getCommentByReviewId, newCommentByReviewID, DeleteComment, getComments, getOneComment, getAll} = require("./controller/controller");
+const { getCategories, getReviewID, getUsers, newRev, getReviews, getCommentByReviewId, newCommentByReviewID, DeleteComment, getComments, getOneComment, commentVote} = require("./controller/controller");
 
 const app = express();
 app.use(cors());
@@ -21,6 +21,7 @@ app.get("/api/reviews/:review_id", (commentCount)=>{
 app.get("/api/reviews", getReviews)
 
 app.patch("/api/reviews/:review_id", newRev);
+app.patch("/api/comments/:comment_id", commentVote)
 
 app.get("/api/reviews/:review_id/comments", getCommentByReviewId)
 app.post("/api/reviews/:review_id/comments", newCommentByReviewID)

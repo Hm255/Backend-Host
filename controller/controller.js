@@ -1,15 +1,16 @@
 const express = require('express');
 
-const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, OneComment, fetchAll, checkCommentExists} = require('../model/model')
+const {fetchCategories, fetchReviewID, fetchUsers, editReview, fetchReviews, fetchCommentbyReviewID, postCommentByReviewID, removeComment, fetchAllComments, OneComment, fetchAll, checkCommentExists, commentVoter} = require('../model/model')
 //handling sql queries and directing them to an output in the controller
 
 const app = express();
 
-exports.getCategories = (req, res) => {      
+exports.getCategories = (req, res) => {
     fetchCategories().then((categories) => {
       res.status(200).send({categories});
     });
   };
+
 exports.getReviewID = (req, res, next) => {
   const { review_id } = req.params
   return fetchReviewID(review_id)
@@ -29,7 +30,7 @@ exports.getReviewID = (req, res, next) => {
 exports.newCommentByReviewID = (req, res, next) => {
   const { review_id } = req.params
   const comment = req.body 
-  console.log(req.body, req.params)
+  
    postCommentByReviewID(comment, review_id)
   .then((review) => {
   return res.status(201).send({review: review[0]})
@@ -45,8 +46,9 @@ exports.getUsers = (req, res) => {
     res.status(200).send({users});
   });
 };
+
 exports.newRev = (req, res, next) => {
-  const {inc_votes} = req.body     
+  const {inc_votes} = req.body
   const {review_id} = req.params
   editReview(inc_votes, review_id)
   .then((review) => {
@@ -56,6 +58,19 @@ exports.newRev = (req, res, next) => {
     next(err);
   })
 };
+
+exports.commentVote = (req, res, next) => {
+  const {inc_votes} = req.body
+  const {comment_id} = req.params
+  commentVoter(inc_votes, comment_id)
+  .then((comment) => {
+  res.status(200).send({comment});
+  })
+  .catch((err)=>{
+    next(err);
+  })
+};
+
 exports.getReviews = (req, res, next) => {
   const {sortedBy, orderedBy, category} = req.query
   return fetchReviews(sortedBy, orderedBy, category)
