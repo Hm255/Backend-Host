@@ -3,7 +3,7 @@ const testData = require('../db/data/test-data')
 const request = require("supertest");
 const db = require("../db/connection");
 const seed = require('../db/seeds/seed');
-const {expect} = require('@jest/globals'); 
+const {expect} = require('@jest/globals');
 
 beforeEach(()=>{
   return seed(testData)
