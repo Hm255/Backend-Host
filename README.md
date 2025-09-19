@@ -101,12 +101,12 @@ node: V18.1.2
   
   .env.test
   <br>
-  PGDATABASE=nc_games_test
+  PGDATABASE=[db-name]
 
   .env.development
   <br>
-  PGDATABASE=nc_games
+  PGDATABASE=[test-db-name]
 
   .env.production
   <br>
-  DATABASE_URL="postgres://vqsvtpzs:ovkKpeiD6a_1eXPw-MRflpq8dKVxBNqi@lucky.db.elephantsql.com/vqsvtpzs"
+  DATABASE_URL=[not-for-your-eyes]

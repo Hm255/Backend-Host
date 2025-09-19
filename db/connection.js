@@ -5,7 +5,7 @@ const ENV = process.env.NODE_ENV || 'development';
 require('dotenv').config({
   path: `${__dirname}/../.env.${ENV}`,
 });
-
+console.log(process.env.NODE_ENV)
 if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
   throw new Error('PGDATABASE/DB_URL not set');
 }
