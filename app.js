@@ -18,11 +18,11 @@ const {
 
 const app = express();
 
-// --- Global middleware ---
+
 app.use(cors());
 app.use(express.json());
 
-// --- Routes ---
+
 app.get("/api", (req, res) => {
   res.status(200).send({ endpoints });
 });
@@ -43,12 +43,12 @@ app.delete("/api/comments/:comment_id", DeleteComment);
 
 app.get("/api/users", getUsers);
 
-// --- 404 handler (must be after all routes) ---
+// 404 handler (must be after all routes)
 app.use((req, res) => {
   res.status(404).send({ msg: "Item does not exist" });
 });
 
-// --- Error-handling middleware ---
+// Error-handling middleware 
 app.use((err, req, res, next) => {
   if (err.code === "22P02") {
     return res.status(400).send({ msg: "invalid type (type is wrong)" });

@@ -122,8 +122,7 @@ exports.OneComment = (comment_id) => {
   );
 };
 
-// Optional: fetch all endpoints (if you have a table for them)
-exports.fetchAll = () => {
-  return db.query(`SELECT * FROM endpoints`)
-    .then(({ rows }) => rows);
-};
+// exports.fetchAll = () => {
+//   return db.query(`SELECT * FROM endpoints`)
+//     .then(({ rows }) => rows);
+// };
