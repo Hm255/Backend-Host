@@ -208,8 +208,7 @@ describe('DELETE /api/comments/:comment_id', () => {
       .get('/api/reviews/99')
       .expect(404)
       .then(({body}) => {
-       
-        expect(body).toEqual({})
+        expect(body).toEqual({msg: "Review not found"})
       })
     })
     it('should return the comment count of a user without comments', () => {
