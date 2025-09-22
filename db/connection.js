@@ -1,11 +1,10 @@
-const db = require("../db/connection");
 const { Pool } = require('pg');
 const ENV = process.env.NODE_ENV || 'development';
 
 require('dotenv').config({
   path: `${__dirname}/../.env.${ENV}`,
 });
-console.log(process.env.NODE_ENV)
+
 if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
   throw new Error('PGDATABASE/DB_URL not set');
 }
@@ -14,6 +13,7 @@ const config =
   ENV === 'production'
     ? {
         connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false }
       }
     : {};
 
