@@ -8,7 +8,7 @@
     "seed": "node ./db/seeds/run-seed.js",
     "test": "jest",
     "dev": "nodemon listen.js",
-    "prepare": "husky install",
+    "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install; fi",
     "start": "node listen.js",
     "seed-prod": "cross-env NODE_ENV=production npm run seed"
   },
