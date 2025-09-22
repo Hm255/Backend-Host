@@ -19,7 +19,11 @@ const {
 const app = express();
 
 
-app.use(cors());
+app.use(cors({
+  origin: "https://my-only-nc-games.netlify.app",
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 
